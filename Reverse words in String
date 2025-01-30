@@ -1,0 +1,229 @@
+In C++:
+Method 1:
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    string* s=new string[n]; // Dynamically allocating memory for strings
+    for(int i=0;i<n;i++)
+    {
+        cin>>s[i];
+    }
+    // Printing the strings in reverse order
+    for(int i=n-1;i>=0;i--)
+    {
+        cout<<s[i]<<" ";
+    }
+    delete[] s; // Free the allocated memory
+}
+
+Method 2:
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    cin.ignore();  // To consume the leftover newline character after cin >> n
+    vector<string>v(n);
+    for(int i=0;i<n;i++)
+    {
+        getline(cin,v[i]); // Using getline to allow spaces in the input
+    }
+     // Printing the strings in reverse order
+    for(int i=n-1;i>=0;i--)
+    {
+        cout<<v[i]<<" ";
+    }
+}
+
+Method 3:
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    cin.ignore();
+    vector<string>v(n);
+    for(int i=0;i<n;i++)
+    {
+        getline(cin,v[i]);
+    }
+    int left=0,right=n-1;
+    while(left<right)
+    {
+        string temp=v[left];
+        v[left]=v[right];
+        v[right]=temp;
+        left++;
+        right--;
+    }
+    for(int i=0;i<n;i++)
+    {
+        cout<<v[i]<<" ";
+    }
+}
+
+Method 4:
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    cin.ignore();
+    vector<string>v(n);
+    for(int i=0;i<n;i++)
+    {
+        getline(cin,v[i]);
+    }
+    int left=0,right=n-1;
+    while(left<right)
+    {
+        swap(v[left],v[right]);
+        left++;
+        right--;
+    }
+    for(int i=0;i<n;i++)
+    {
+        cout<<v[i]<<" ";
+    }
+}
+
+Input:
+3
+Jeedigunta
+Harika
+Sri
+
+Output:
+Sri Harika Jeedigunta 
+
+In Java:
+Method 1:
+import java.util.Scanner;
+public class ReverseStringWords
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        String[] Words=new String[n];
+        for(int i=0;i<n;i++)
+        {
+            Words[i]=sc.next();
+        }
+        for(int i=n-1;i>=0;i--)
+        {
+            System.out.print(Words[i]+" ");
+        }
+    }
+}
+
+Method 2:
+import java.util.Scanner;
+import java.util.ArrayList;
+public class ReverseWords
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        sc.nextLine();
+        ArrayList<String>V=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            String line=sc.nextLine();
+            V.add(line);
+        }
+        for(int i=n-1;i>=0;i--)
+        {
+            System.out.print(V.get(i)+" ");
+        }
+        sc.close();
+        
+    }
+}
+
+Method 3:
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+public class ReverseWords
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        sc.nextLine();
+        ArrayList<String>List=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            String line=sc.nextLine();
+            List.add(line);
+            
+        }
+        int left=0,right=n-1;
+        while(left<right)
+        {
+            String temp=List.get(left);
+            List.set(left,List.get(right));
+            List.set(right,temp);
+            left++;
+            right--;
+        }
+        for(int i=0;i<n;i++)
+        {
+            System.out.print(List.get(i)+" ");
+        }
+    }
+}
+
+Method 4:
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+public class ReverseWords
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        sc.nextLine();
+        ArrayList<String>List=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            String line=sc.nextLine();
+            List.add(line);
+        }
+        int left=0,right=n-1;
+        while(left<right)
+        {
+            Collections.swap(List,left,right);
+            left++;
+            right--;
+        }
+        for(int i=0;i<n;i++)
+        {
+            System.out.print(List.get(i)+" ");
+        }
+    }
+}
+
+Input:
+3
+Jeedigunta
+Harika
+Sri 
+
+Output:
+Sri  Harika Jeedigunta 
