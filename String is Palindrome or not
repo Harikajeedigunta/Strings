@@ -1,0 +1,217 @@
+C++ Code:
+Method 1:
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    string* s=new string[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>s[i];
+    }
+    bool isPalindrome=true;
+    for(int i=0;i<n/2;i++)
+    {
+        if(s[i]!=s[n-1-i])
+        {
+            isPalindrome=false;
+            break;
+        }
+    }
+    if(isPalindrome)
+    {
+        cout<<"Palindrome";
+    }
+    else 
+    {
+        cout<<"Not Palindrome";
+    }
+    delete[] s;
+}
+
+Method 2:
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    vector<string>v(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>v[i];
+    }
+    bool isPalindrome=true;
+    for(int i=0;i<n/2;i++)
+    {
+        if(v[i]!=v[n-1-i])
+        {
+            isPalindrome=false;
+            break;
+        }
+    }
+    if(isPalindrome)
+    {
+        cout<<"Palindrome";
+    }
+    else
+    {
+        cout<<"Not Palindrome";
+    }
+}
+
+Method 3:
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    vector<string>v(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>v[i];
+    }
+    int first=0,last=n-1;
+    bool isPalindrome=true;
+    while(first<last)
+    {
+        if(v[first]!=v[last])
+        {
+            isPalindrome=false;
+            break;
+        }
+        first++;
+        last--;
+    }
+    if(isPalindrome)
+    {
+        cout<<"Palindrome";
+    }
+    else
+    {
+        cout<<"Not Palindrome";
+    }
+}
+Input:
+3
+hello world hello
+Output:
+Palindrome
+
+Java Code:
+Method 1:
+import java.util.Scanner;
+public class Palindrome
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        String[] Words = new String[n];
+        for(int i=0;i<n;i++)
+        {
+            Words[i]=sc.next();
+        }
+        boolean isPalindrome=true;
+        for(int i=0;i<n/2;i++)
+        {
+            if(!Words[i].equals(Words[n-1-i]))
+            {
+                isPalindrome=false;
+                break;
+            }
+        }
+        if(isPalindrome)
+        {
+            System.out.print("Palindrome");
+        }
+        else 
+        {
+            System.out.print("Not Palindrome");
+        }
+    }
+}
+
+Method 2:
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Palindrome
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        ArrayList<String>List= new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            List.add(sc.next());
+        }
+        boolean isPalindrome=true;
+        for(int i=0;i<n/2;i++)
+        {
+            if(!List.get(i).equals(List.get(n-1-i)))
+            {
+                isPalindrome=false;
+                break;
+            }
+        }
+        if(isPalindrome)
+        {
+            System.out.print("Palindrome");
+        }
+        else
+        {
+            System.out.print("Not Palindrome");
+        }
+    }
+    
+}
+
+Method 3:
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Palindrome
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        ArrayList<String>List= new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            List.add(sc.next());
+        }
+        int left=0,right=n-1;
+        boolean isPalindrome=true;
+        while(left<right)
+        {
+            if(!List.get(left).equals(List.get(right)))
+            {
+               isPalindrome=false;
+               break;
+            }
+            left++;
+            right--;
+        }
+        if(isPalindrome)
+        {
+            System.out.print("Palindrome");
+        }
+        else
+        {
+            System.out.print("Not Palindrome");
+        }
+    }
+}
+Input:
+3
+Hello Harika Hi
+Output:
+Not Palindrome
