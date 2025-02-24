@@ -1,0 +1,90 @@
+C++ code:
+Method 1:
+#include<iostream>
+#include<vector>
+using namespace std;
+class Solution
+{
+    public:
+    string longestCommonPrefix(vector<string>& s)
+    {
+        if(s.empty())
+        {
+            return "";
+        }
+        string prefix=s[0];
+        for(int i=1;i<s.size();i++)
+        {
+            int j=0;
+            while(j<prefix.size() && j<s[i].size() && prefix[j]==s[i][j])
+            {
+                j++;
+            }
+            prefix=prefix.substr(0,j);
+            if(prefix.empty())
+            {
+                return "";
+            }
+        }
+        return prefix;
+    }
+};
+int main()
+{
+    int n;
+    cin>>n;
+    vector<string>s(n);
+    Solution sol;
+    for(int i=0;i<n;i++)
+    {
+        cin>>s[i];
+    }
+    cout<<sol.longestCommonPrefix(s)<<endl;
+    return 0;
+}
+
+Method 2:
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+class Solution
+{
+    public:
+    string longestCommonPrefix(vector<string>& s)
+    {
+        if(s.empty())
+        {
+            return "";
+        }
+        sort(s.begin(),s.end());
+        string first=s[0];
+        string last=s[s.size()-1];
+        string ans="";
+        for(int i=0;i<s.size();i++)
+        {
+            if(first[i]!=last[i])
+            {
+                return ans;
+            }
+            ans+=first[i];
+        }
+        return ans;
+    }
+};
+int main()
+{
+    int n;
+    cin>>n;
+    Solution sol;
+    vector<string>s(n);
+    for(int i=0;i<n;i++)
+    {
+        cin>>s[i];
+    }
+    cout<<sol.longestCommonPrefix(s)<<endl;
+    return 0;
+}
+Input : str = ["flowers" , "flow" , "fly", "flight" ]
+Output : "fl"
+Explanation : All strings given in array contains common prefix "fl".
