@@ -1,0 +1,99 @@
+C++ code:
+Method 1: Brute Force
+#include<iostream>
+#include<string>
+using namespace std;
+class Solution
+{
+    public:
+    string tofindFirstNonRepeatingCharacter(string s)
+    {
+        for(int i=0;i<s.length();i++)
+        {
+            bool isunique=true;
+            for(int j=i+1;j<s.length();j++)
+            {
+                if(s[i]==s[j])
+                {
+                    isunique=false;
+                    break;
+                }
+            }
+            if(isunique)
+            {
+                return string(1,s[i]);
+            }
+        }
+        return "-";
+        
+    }
+};
+int main()
+{
+    string s;
+    cin>>s;
+    Solution sol;
+    cout<<sol.tofindFirstNonRepeatingCharacter(s);
+}
+
+Method 2: Using unordered_map
+#include<iostream>
+#include<string>
+#include<unordered_map>
+using namespace std;
+int main()
+{
+    string s;
+    cin>>s;
+    unordered_map<char,int>mp;
+    for(char ch:s)
+    {
+        mp[ch]+=1;
+    }
+    for(char ch:s)
+    {
+        if(mp[ch]==1)
+        {
+            cout<<ch;
+            return 0;
+        }
+    }
+    cout<<"-";
+}
+
+Method 3: Using queue
+#include<iostream>
+#include<string>
+#include<unordered_map>
+#include<queue>
+using namespace std;
+int main()
+{
+    string s;
+    cin>>s;
+    unordered_map<char,int>mp;
+    queue<char>q;
+    for(char ch:s)
+    {
+        mp[ch]+=1;
+        q.push(ch);
+    }
+    while(!q.empty() && mp[q.front()]>1)
+    {
+        q.pop();
+    }
+    if(q.empty())
+    {
+       cout<<"-";
+    }
+    else
+    {
+        cout<<q.front();
+    }
+}
+
+Input:
+swiss
+
+Output:
+w
