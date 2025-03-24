@@ -1,0 +1,79 @@
+Method 1:
+#include<iostream>
+#include<string>
+#include<cctype>
+using namespace std;
+class Solution
+{
+    public:
+    string LowerToUpper(string s)
+    {
+        for(char &ch:s)
+        {
+            ch=toupper(ch);
+        }
+        return s;
+    }
+};
+int main()
+{
+    string s;
+    cin>>s;
+    Solution sol;
+    cout<<sol.LowerToUpper(s);
+}
+
+Method 2:
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+class Solution
+{
+    public:
+    string LowerToUpper(string s)
+    {
+        transform(s.begin(),s.end(),s.begin(),::toupper);
+        return s;
+    }
+};
+int main()
+{
+    string s;
+    cin>>s;
+    Solution sol;
+    cout<<sol.LowerToUpper(s);
+}
+
+Methode 3:
+#include<iostream>
+#include<string>
+using namespace std;
+class Solution
+{
+    public:
+    string LowerToUpper(string s)
+    {
+        for(char &ch:s)
+        {
+            if(ch>='a' && ch<='z')
+            {
+                ch-=32;
+            }
+        }
+        return s;
+    }
+};
+int main()
+{
+    string s;
+    cin>>s;
+    Solution sol;
+    cout<<sol.LowerToUpper(s);
+}
+
+Input:
+harika
+
+Output:
+HARIKA
