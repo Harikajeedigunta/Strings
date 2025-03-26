@@ -1,0 +1,92 @@
+C++ Code:
+Method 1: Brute Force
+#include<iostream>
+#include<string>
+#include<stack>
+using namespace std;
+class Solution
+{
+    public:
+    bool isPalindrome(string s)
+    {
+        string result="";
+        stack<char>st;
+        for(char ch:s)
+        {
+            if(isalnum(ch))
+            {
+                ch=tolower(ch);
+                result+=ch;
+                st.push(ch);
+            }
+        }
+        for(char ch:result)
+        {
+            if(st.top()!=ch) return false;
+            st.pop();
+        }
+        return true;
+    }
+};
+int main()
+{
+    string s;
+    cin>>s;
+    Solution sol;
+    int isValidPalindrome=sol.isPalindrome(s);
+    if(isValidPalindrome)
+    {
+        cout<<"True";
+    }
+    else 
+    {
+        cout<<"False";
+    }
+}
+
+Input:
+a man,a plan,a canal:panama
+
+Output:
+True
+
+Method 2:Optimized
+#include<iostream>
+#include<string>
+using namespace std;
+class Solution
+{
+    public:
+    bool isPalindrome(string s)
+    {
+        int left=0,right=s.length()-1;
+        while(left<right)
+        {
+            while(left<right && !isalnum(s[left])) left++;
+            while(left<right && !isalnum(s[right])) right++;
+            left++;
+            right--;
+        }
+        return true;
+    }
+};
+int main()
+{
+    string s;
+    cin>>s;
+    Solution sol;
+    bool isValidPalindrome=sol.isPalindrome(s);
+    if(isValidPalindrome)
+    {
+        cout<<"True";
+    }
+    else 
+    {
+        cout<<"False";
+    }
+}
+ Input:
+ a man,a plan,a canal:panama
+
+ Output:
+ True
