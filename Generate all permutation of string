@@ -1,0 +1,62 @@
+Method 1: Using backtracking and recursion
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+void generatePermutations(string& s,int index,vector<string>& result)
+{
+    // Base Case
+    if(index==s.size())
+    {
+        result.push_back(s);
+        return;
+    }
+    for(int i=index;i<s.size();i++)
+    {
+        if(i!=index && s[i]==s[index]) continue;
+        swap(s[i],s[index]);
+        generatePermutations(s,index+1,result);
+        swap(s[i],s[index]);
+    }
+}
+int main()
+{
+    string s;
+    cin>>s;
+    sort(s.begin(),s.end());
+    vector<string>result;
+    generatePermutations(s,0,result);
+    for(auto per:result)
+    {
+        cout<<per<<endl;
+    }
+    return 0;
+}
+
+Method 2: Using next_permutation in STL
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    string s;
+    cin>>s;
+    sort(s.begin(),s.end());
+    do
+    {
+        cout<<s<<endl;
+    }while(next_permutation(s.begin(),s.end()));
+    return 0;
+}
+
+Input:
+abc
+
+Output:
+abc
+acb
+bac
+bca
+cba
+cab
