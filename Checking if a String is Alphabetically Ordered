@@ -1,0 +1,47 @@
+C++ Code:
+#include<iostream>
+#include<string>
+using namespace std;
+class Solution
+{
+    public:
+    bool isStable(string s)
+    {
+        for(int i=1;i<s.length();i++)
+        {
+            if(s[i]<s[i-1])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+int main()
+{
+    string s;
+    cin>>s;
+    Solution sol;
+    bool isstable=sol.isStable(s);
+    if(isstable)
+    {
+        cout<<"True"<<endl;
+    }
+    else 
+    {
+        cout<<"False"<<endl;
+    }
+}
+
+Input1:
+abdce
+
+Output1:
+False
+
+Input2:
+abcde
+
+Output2:
+True
+
