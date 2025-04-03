@@ -1,0 +1,54 @@
+C++ Code:
+#include<iostream>
+#include<unordered_map>
+using namespace std;
+class Solution
+{
+    public:
+    bool isStableCount(string s)
+    {
+        unordered_map<char,int>mp;
+        for(char ch:s)
+        {
+            mp[ch]+=1;
+        }
+        int count=mp[s[0]];
+        for(auto pair:mp)
+        {
+            if(pair.second!=count)
+            {
+                return false;
+                return 0;
+            }
+        }
+        return true;
+    }
+};
+int main()
+{
+    string s;
+    cin>>s;
+    Solution sol;
+    bool isstable=sol.isStableCount(s);
+    if(isstable)
+    {
+        cout<<"True"<<endl;
+    }
+    else 
+    {
+        cout<<"False"<<endl;
+    }
+}
+
+Input1:
+aabbcc
+
+Output2:
+True
+
+Input2:
+aabbc
+
+Output2:
+False
+
